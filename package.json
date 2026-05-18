@@ -1,0 +1,24 @@
+{
+  "name": "dryoung-homepage",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "check:visual": "playwright test"
+  },
+  "dependencies": {
+    "@fontsource/orbitron": "^5.2.8",
+    "@fontsource/zcool-qingke-huangyou": "^5.2.8",
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.23",
+    "lucide": "^1.16.0",
+    "three": "^0.184.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "vite": "^8.0.13"
+  }
+}
