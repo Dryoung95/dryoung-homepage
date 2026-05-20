@@ -25,11 +25,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 const navItems = [
   ["能力 Profile", "#profile"],
-  ["竞技 Rank", "#gaming"],
   ["动效 Motion", "#geometry"],
   ["作品 Experiments", "#experiments"],
   ["实习 Internship", "#internship"],
   ["技术 Stack", "#stack"],
+  ["竞技", "#gaming"],
   ["频道 Channel", "#channel"],
   ["联系 Contact", "#contact"]
 ];
@@ -471,85 +471,6 @@ document.querySelector("#app").innerHTML = `
         </div>
       </section>
 
-      <section class="gaming section-band" id="gaming">
-        <div class="section-heading">
-          <div>
-            <div class="section-kicker" data-reveal>竞技信号 Rank Signal</div>
-            <h2 data-reveal>王者荣耀司马懿，市级银标战绩。</h2>
-          </div>
-          <p data-reveal>
-            这部分作为个人主页里的兴趣切面：保留最高排名、英雄定位和竞技记忆点，
-            司马懿形象使用官方素材切图，银标位置预留给官方截图素材。
-          </p>
-        </div>
-
-        <div class="gaming-card" data-reveal>
-          <div class="sima-stage" aria-label="司马懿官方形象切图动画">
-            <div class="sima-grid" aria-hidden="true"></div>
-            <div class="sima-moon" aria-hidden="true"></div>
-            <div class="sima-ring ring-a" aria-hidden="true"></div>
-            <div class="sima-ring ring-b" aria-hidden="true"></div>
-            <div class="sima-rune rune-a">CITY</div>
-            <div class="sima-rune rune-b">SILVER</div>
-            <div class="sima-rune rune-c">89</div>
-            <div class="sima-cutout" aria-hidden="true">
-              <img class="sima-official-art" src="/sima-yi-official-cutout.png" alt="王者荣耀司马懿官方形象切图" />
-              <span class="sima-shadow shadow-a"></span>
-              <span class="sima-shadow shadow-b"></span>
-              <span class="sima-robe"></span>
-              <span class="sima-shoulder shoulder-a"></span>
-              <span class="sima-shoulder shoulder-b"></span>
-              <span class="sima-head"></span>
-              <span class="sima-eye"></span>
-              <span class="sima-blade blade-a"></span>
-              <span class="sima-blade blade-b"></span>
-            </div>
-          </div>
-
-          <div class="gaming-copy">
-            <div class="silver-badge" aria-label="王者荣耀官方银标截图位">
-              <img
-                class="silver-badge-image"
-                src="/hok-silver-badge.png"
-                alt="王者荣耀官方银标截图"
-                onerror="this.hidden=true; this.closest('.silver-badge').querySelector('.badge-core').hidden=false;"
-              />
-              <span class="badge-wing wing-left"></span>
-              <span class="badge-wing wing-right"></span>
-              <span class="badge-core" hidden>
-                <small>HONOR OF KINGS</small>
-                <strong>银标</strong>
-                <em>太原市</em>
-              </span>
-            </div>
-            <span class="gaming-label">Official Rank Slot</span>
-            <h3>司马懿 / Sima Yi</h3>
-            <p>
-              王者荣耀英雄池中的法刺代表位。个人最高记录为司马懿市级银标，
-              最高排名太原市第 89 名。
-            </p>
-            <div class="rank-grid" aria-label="司马懿战绩信息">
-              <div class="rank-tile">
-                <span>Hero</span>
-                <strong>司马懿</strong>
-              </div>
-              <div class="rank-tile">
-                <span>Badge</span>
-                <strong>市级银标</strong>
-              </div>
-              <div class="rank-tile rank-highlight">
-                <span>Best Rank</span>
-                <strong>太原市第 89</strong>
-              </div>
-              <div class="rank-tile">
-                <span>Role</span>
-                <strong>法刺 / Burst</strong>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section class="geometry section-band" id="geometry">
         <div class="section-heading">
           <div>
@@ -936,6 +857,85 @@ document.querySelector("#app").innerHTML = `
             `
             )
             .join("")}
+        </div>
+      </section>
+
+      <section class="gaming section-band" id="gaming">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker" data-reveal>竞技信号</div>
+            <h2 data-reveal>王者荣耀司马懿，市级银标战绩。</h2>
+          </div>
+          <p data-reveal>
+            这部分作为个人主页里的兴趣切面：保留最高排名、英雄定位和竞技记忆点，
+            司马懿形象使用官方素材切图，银标位置预留给官方截图素材。
+          </p>
+        </div>
+
+        <div class="gaming-card" data-reveal>
+          <div class="sima-stage" aria-label="司马懿官方形象切图动画">
+            <div class="sima-grid" aria-hidden="true"></div>
+            <div class="sima-moon" aria-hidden="true"></div>
+            <div class="sima-ring ring-a" aria-hidden="true"></div>
+            <div class="sima-ring ring-b" aria-hidden="true"></div>
+            <div class="sima-rune rune-a">太原市</div>
+            <div class="sima-rune rune-b">银标</div>
+            <div class="sima-rune rune-c">89</div>
+            <div class="sima-cutout" aria-hidden="true">
+              <img class="sima-official-art" src="/sima-yi-official-cutout.png" alt="王者荣耀司马懿官方形象切图" />
+              <span class="sima-shadow shadow-a"></span>
+              <span class="sima-shadow shadow-b"></span>
+              <span class="sima-robe"></span>
+              <span class="sima-shoulder shoulder-a"></span>
+              <span class="sima-shoulder shoulder-b"></span>
+              <span class="sima-head"></span>
+              <span class="sima-eye"></span>
+              <span class="sima-blade blade-a"></span>
+              <span class="sima-blade blade-b"></span>
+            </div>
+          </div>
+
+          <div class="gaming-copy">
+            <div class="silver-badge" aria-label="王者荣耀官方银标截图位">
+              <img
+                class="silver-badge-image"
+                src="/hok-silver-badge.png"
+                alt="王者荣耀官方银标截图"
+                onerror="this.hidden=true; this.closest('.silver-badge').querySelector('.badge-core').hidden=false;"
+              />
+              <span class="badge-wing wing-left"></span>
+              <span class="badge-wing wing-right"></span>
+              <span class="badge-core" hidden>
+                <small>王者荣耀</small>
+                <strong>银标</strong>
+                <em>太原市</em>
+              </span>
+            </div>
+            <span class="gaming-label">官方银标素材位</span>
+            <h3>司马懿</h3>
+            <p>
+              王者荣耀英雄池中的法刺代表位。个人最高记录为司马懿市级银标，
+              最高排名太原市第 89 名。
+            </p>
+            <div class="rank-grid" aria-label="司马懿战绩信息">
+              <div class="rank-tile">
+                <span>英雄</span>
+                <strong>司马懿</strong>
+              </div>
+              <div class="rank-tile">
+                <span>标识</span>
+                <strong>市级银标</strong>
+              </div>
+              <div class="rank-tile rank-highlight">
+                <span>最高排名</span>
+                <strong>太原市第 89</strong>
+              </div>
+              <div class="rank-tile">
+                <span>定位</span>
+                <strong>法刺</strong>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
