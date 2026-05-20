@@ -168,8 +168,8 @@ const meaningfulMoments = [
     label: "半程马拉松",
     copy: "第一次把 21.0975 公里跑完，记住了节奏、体能和终点线前的那一段坚持。",
     photos: [
-      ["/moments/chengdu-marathon-01.jpg", "人生第一次成都半程马拉松照片 1"],
-      ["/moments/chengdu-marathon-02.jpg", "人生第一次成都半程马拉松照片 2"]
+      ["/moments/chengdu-marathon-01.jpg?v=20260520b", "人生第一次成都半程马拉松照片 1"],
+      ["/moments/chengdu-marathon-02.jpg?v=20260520b", "人生第一次成都半程马拉松照片 2"]
     ]
   },
   {
@@ -179,8 +179,8 @@ const meaningfulMoments = [
     label: "支教",
     copy: "在一段具体的乡土场景里讲课、沟通和协作，也重新理解教育、表达与陪伴的重量。",
     photos: [
-      ["/moments/suixian-volunteer-01.jpg", "河南商丘睢县支教照片 1"],
-      ["/moments/suixian-volunteer-02.jpg", "河南商丘睢县支教照片 2"]
+      ["/moments/suixian-volunteer-01.jpg?v=20260520b", "河南商丘睢县支教照片 1"],
+      ["/moments/suixian-volunteer-02.jpg?v=20260520b", "河南商丘睢县支教照片 2"]
     ]
   },
   {
@@ -190,8 +190,8 @@ const meaningfulMoments = [
     label: "登山",
     copy: "从山路、云层到金顶，把一次登山变成对耐心、体力和方向感的完整校准。",
     photos: [
-      ["/moments/emei-golden-summit-01.jpg", "峨眉山金顶照片 1"],
-      ["/moments/emei-golden-summit-02.jpg", "峨眉山金顶照片 2"]
+      ["/moments/emei-golden-summit-01.jpg?v=20260520b", "峨眉山金顶照片 1"],
+      ["/moments/emei-golden-summit-02.jpg?v=20260520b", "峨眉山金顶照片 2"]
     ]
   }
 ];
@@ -943,10 +943,6 @@ document.querySelector("#app").innerHTML = `
             <div class="section-kicker" data-reveal>有意义的事情 Moments</div>
             <h2 data-reveal>一些有意义的事情</h2>
           </div>
-          <p data-reveal>
-            2023 到 2026 的三个节点：第一次半马、一次支教、一座金顶。
-            鼠标靠近卡片时，两张对应照片会展开并放大。
-          </p>
         </div>
 
         <div class="moment-timeline">
@@ -1312,7 +1308,6 @@ const textTranslations = {
   "数据结构与算法、数字信号处理、雷达成像重构、物理建模与端到端训练": "Data structures and algorithms, digital signal processing, radar imaging reconstruction, physics modeling, and end-to-end training",
   "有意义的事情 Moments": "Meaningful Moments",
   "一些有意义的事情": "Some meaningful moments",
-  "2023 到 2026 的三个节点：第一次半马、一次支教、一座金顶。 鼠标靠近卡片时，两张对应照片会展开并放大。": "Three markers from 2023 to 2026: a first half marathon, a volunteer teaching trip, and a summit at Emei. Move the cursor near a card to reveal and enlarge its two photos.",
   "人生第一次成都半程马拉松": "My first Chengdu half marathon",
   "半程马拉松": "Half Marathon",
   "第一次把 21.0975 公里跑完，记住了节奏、体能和终点线前的那一段坚持。": "The first time I finished 21.0975 km, remembering the rhythm, stamina, and persistence before the finish line.",
