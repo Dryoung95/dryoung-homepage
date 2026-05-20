@@ -802,6 +802,39 @@ document.querySelector("#app").innerHTML = `
           </div>
         </div>
 
+        <div class="ongoing-internships" data-reveal>
+          <div class="ongoing-intro">
+            <span>当前进行中</span>
+            <strong>openUBMC / openEuler 双线开源实习</strong>
+            <p>
+              在 MindSpore 开源实习之外，目前同步推进 openUBMC 与 openEuler 两条开源实习线，
+              继续把基础软件、系统生态和工程协作经验往更底层延展。
+            </p>
+          </div>
+          <article class="ongoing-card ongoing-ubmc">
+            <div class="ongoing-card-head">
+              <span>01</span>
+              <em>进行中</em>
+            </div>
+            <div class="ongoing-icon"><i data-lucide="cpu"></i></div>
+            <h3>openUBMC 开源实习</h3>
+            <p>
+              面向服务器管理与 BMC 基础设施生态，持续参与开源实习任务，补充系统软件与硬件管理方向的实践。
+            </p>
+          </article>
+          <article class="ongoing-card ongoing-euler">
+            <div class="ongoing-card-head">
+              <span>02</span>
+              <em>进行中</em>
+            </div>
+            <div class="ongoing-icon"><i data-lucide="layers"></i></div>
+            <h3>openEuler 开源实习</h3>
+            <p>
+              面向 Linux 操作系统生态与基础软件协作，持续参与 openEuler 开源实习任务，拓展工程交付边界。
+            </p>
+          </article>
+        </div>
+
         <div class="internship-metrics" data-reveal>
           ${internshipStats
             .map(
@@ -1229,6 +1262,14 @@ const textTranslations = {
   "实习周期": "Internship Period",
   "工程关键词": "Engineering Keywords",
   "模型迁移、收敛优化、Ascend 部署、验证缓存": "Model migration, convergence optimization, Ascend deployment, verifier cache",
+  "当前进行中": "In Progress",
+  "进行中": "In Progress",
+  "openUBMC / openEuler 双线开源实习": "Dual open-source internships: openUBMC / openEuler",
+  "在 MindSpore 开源实习之外，目前同步推进 openUBMC 与 openEuler 两条开源实习线， 继续把基础软件、系统生态和工程协作经验往更底层延展。": "Beyond the MindSpore open-source internship, I am currently advancing two open-source internship tracks with openUBMC and openEuler, extending my practice into lower-level infrastructure, system ecosystems, and engineering collaboration.",
+  "openUBMC 开源实习": "openUBMC Open-source Internship",
+  "面向服务器管理与 BMC 基础设施生态，持续参与开源实习任务，补充系统软件与硬件管理方向的实践。": "Focused on server management and the BMC infrastructure ecosystem, continuing open-source internship work while building practice in system software and hardware management.",
+  "openEuler 开源实习": "openEuler Open-source Internship",
+  "面向 Linux 操作系统生态与基础软件协作，持续参与 openEuler 开源实习任务，拓展工程交付边界。": "Focused on the Linux operating-system ecosystem and foundational software collaboration, continuing openEuler internship work and extending my engineering delivery boundary.",
   "开源实习积分": "Open-source Internship Points",
   "代表任务": "Representative Tasks",
   "训练迁移 / 推理部署 / 验证缓存": "Training migration / Inference deployment / Verifier cache",
@@ -1697,7 +1738,7 @@ window.addEventListener("pointermove", updatePointer);
 if (canHover) {
   gsap.utils
     .toArray(
-      ".project-card, .paper-card, .hackathon-card, .overview-card, .profile-lead, .profile-radar, .profile-signal, .milestone, .moment-card, .gaming-card, .rank-tile, .internship-task, .metric-card, .showcase-panel, .stack-card, .channel-card, .signal-panel, .contact-panel"
+      ".project-card, .paper-card, .hackathon-card, .overview-card, .profile-lead, .profile-radar, .profile-signal, .milestone, .moment-card, .gaming-card, .rank-tile, .ongoing-card, .ongoing-intro, .internship-task, .metric-card, .showcase-panel, .stack-card, .channel-card, .signal-panel, .contact-panel"
     )
     .forEach((element) => {
     element.addEventListener("pointermove", (event) => {
