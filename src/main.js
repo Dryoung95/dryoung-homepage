@@ -29,6 +29,7 @@ const navItems = [
   { zh: "作品", en: "Experiments", href: "#experiments" },
   { zh: "实习", en: "Internship", href: "#internship" },
   { zh: "技术", en: "Stack", href: "#stack" },
+  { zh: "足迹", en: "Moments", href: "#moments" },
   { zh: "竞技", en: "Rank", href: "#gaming" },
   { zh: "频道", en: "Channel", href: "#channel" },
   { zh: "联系", en: "Contact", href: "#contact" }
@@ -157,6 +158,42 @@ const stackItems = [
   ["硬件与平台", "Ascend/GE 后端、Atlas 200DK A2、FPGA/AMD 赛道实践、RTK 卫星循迹"],
   ["工程协作", "Git/PR 协作、README、测试报告、训练日志、性能数据整理和开源社区沟通"],
   ["算法与信号", "数据结构与算法、数字信号处理、雷达成像重构、物理建模与端到端训练"]
+];
+
+const meaningfulMoments = [
+  {
+    code: "M-01",
+    date: "2023.11",
+    title: "人生第一次成都半程马拉松",
+    label: "半程马拉松",
+    copy: "第一次把 21.0975 公里跑完，记住了节奏、体能和终点线前的那一段坚持。",
+    photos: [
+      ["/moments/chengdu-marathon-01.jpg", "人生第一次成都半程马拉松照片 1"],
+      ["/moments/chengdu-marathon-02.jpg", "人生第一次成都半程马拉松照片 2"]
+    ]
+  },
+  {
+    code: "M-02",
+    date: "2024.7",
+    title: "前往河南商丘睢县参与支教",
+    label: "支教",
+    copy: "在一段具体的乡土场景里讲课、沟通和协作，也重新理解教育、表达与陪伴的重量。",
+    photos: [
+      ["/moments/suixian-volunteer-01.jpg", "河南商丘睢县支教照片 1"],
+      ["/moments/suixian-volunteer-02.jpg", "河南商丘睢县支教照片 2"]
+    ]
+  },
+  {
+    code: "M-03",
+    date: "2026.5",
+    title: "峨眉山登上金顶",
+    label: "登山",
+    copy: "从山路、云层到金顶，把一次登山变成对耐心、体力和方向感的完整校准。",
+    photos: [
+      ["/moments/emei-golden-summit-01.jpg", "峨眉山金顶照片 1"],
+      ["/moments/emei-golden-summit-02.jpg", "峨眉山金顶照片 2"]
+    ]
+  }
 ];
 
 const contentTracks = [
@@ -867,6 +904,59 @@ document.querySelector("#app").innerHTML = `
         </div>
       </section>
 
+      <section class="moments section-band" id="moments">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker" data-reveal>有意义的事情 Moments</div>
+            <h2 data-reveal>一些有意义的事情</h2>
+          </div>
+          <p data-reveal>
+            2023 到 2026 的三个节点：第一次半马、一次支教、一座金顶。
+            鼠标靠近卡片时，两张对应照片会展开并放大。
+          </p>
+        </div>
+
+        <div class="moment-timeline">
+          ${meaningfulMoments
+            .map(
+              (moment) => `
+                <article class="moment-card" data-reveal tabindex="0">
+                  <div class="moment-date">
+                    <span>${moment.code}</span>
+                    <strong>${moment.date}</strong>
+                  </div>
+                  <div class="moment-body">
+                    <span>${moment.label}</span>
+                    <h3>${moment.title}</h3>
+                    <p>${moment.copy}</p>
+                  </div>
+                  <div class="moment-photos" aria-label="${moment.title}照片预览">
+                    ${moment.photos
+                      .map(
+                        ([src, alt], index) => `
+                          <figure class="moment-photo photo-${index + 1}">
+                            <img
+                              src="${src}"
+                              alt="${alt}"
+                              onload="this.nextElementSibling.hidden=true;"
+                              onerror="this.hidden=true; this.nextElementSibling.hidden=false;"
+                            />
+                            <span class="moment-photo-placeholder" hidden>
+                              <small>照片 ${String(index + 1).padStart(2, "0")}</small>
+                              <strong>待补充</strong>
+                            </span>
+                          </figure>
+                        `
+                      )
+                      .join("")}
+                  </div>
+                </article>
+              `
+            )
+            .join("")}
+        </div>
+      </section>
+
       <section class="gaming section-band" id="gaming">
         <div class="section-heading">
           <div>
@@ -1037,6 +1127,7 @@ const textTranslations = {
   "作品": "Experiments",
   "实习": "Internship",
   "技术": "Stack",
+  "足迹": "Moments",
   "竞技": "Rank",
   "频道": "Channel",
   "联系": "Contact",
@@ -1178,6 +1269,21 @@ const textTranslations = {
   "Git/PR 协作、README、测试报告、训练日志、性能数据整理和开源社区沟通": "Git/PR collaboration, README, test reports, training logs, performance data organization, and open-source community communication",
   "算法与信号": "Algorithms and Signals",
   "数据结构与算法、数字信号处理、雷达成像重构、物理建模与端到端训练": "Data structures and algorithms, digital signal processing, radar imaging reconstruction, physics modeling, and end-to-end training",
+  "有意义的事情 Moments": "Meaningful Moments",
+  "一些有意义的事情": "Some meaningful moments",
+  "2023 到 2026 的三个节点：第一次半马、一次支教、一座金顶。 鼠标靠近卡片时，两张对应照片会展开并放大。": "Three markers from 2023 to 2026: a first half marathon, a volunteer teaching trip, and a summit at Emei. Move the cursor near a card to reveal and enlarge its two photos.",
+  "人生第一次成都半程马拉松": "My first Chengdu half marathon",
+  "半程马拉松": "Half Marathon",
+  "第一次把 21.0975 公里跑完，记住了节奏、体能和终点线前的那一段坚持。": "The first time I finished 21.0975 km, remembering the rhythm, stamina, and persistence before the finish line.",
+  "前往河南商丘睢县参与支教": "Volunteer teaching in Suixian, Shangqiu, Henan",
+  "支教": "Volunteer Teaching",
+  "在一段具体的乡土场景里讲课、沟通和协作，也重新理解教育、表达与陪伴的重量。": "Teaching, communicating, and collaborating in a concrete local setting reshaped my understanding of education, expression, and presence.",
+  "峨眉山登上金顶": "Reached the Golden Summit of Mount Emei",
+  "登山": "Summit",
+  "从山路、云层到金顶，把一次登山变成对耐心、体力和方向感的完整校准。": "From mountain paths and clouds to the Golden Summit, the climb became a full calibration of patience, stamina, and direction.",
+  "照片 01": "Photo 01",
+  "照片 02": "Photo 02",
+  "待补充": "Pending",
   "竞技信号": "Rank Signal",
   "王者荣耀司马懿，市级银标战绩。": "Honor of Kings 司马懿, municipal silver badge record.",
   "黑暗无边无际，人类却妄想光明的胜利。": "Darkness is boundless, yet humanity still dreams of victory in the light.",
@@ -1217,6 +1323,15 @@ const attributeTranslations = {
   "FastDeploy performance profile": "FastDeploy performance profile",
   "MindSpore 开源实习任务可视化": "MindSpore open-source internship visualization",
   "开源实习成果可视化快照": "Open-source internship result snapshots",
+  "人生第一次成都半程马拉松照片预览": "First Chengdu half marathon photo preview",
+  "人生第一次成都半程马拉松照片 1": "First Chengdu half marathon photo 1",
+  "人生第一次成都半程马拉松照片 2": "First Chengdu half marathon photo 2",
+  "前往河南商丘睢县参与支教照片预览": "Volunteer teaching in Suixian photo preview",
+  "河南商丘睢县支教照片 1": "Suixian volunteer teaching photo 1",
+  "河南商丘睢县支教照片 2": "Suixian volunteer teaching photo 2",
+  "峨眉山登上金顶照片预览": "Mount Emei Golden Summit photo preview",
+  "峨眉山金顶照片 1": "Mount Emei Golden Summit photo 1",
+  "峨眉山金顶照片 2": "Mount Emei Golden Summit photo 2",
   "司马懿官方形象切图动画": "Official 司马懿 artwork cutout animation",
   "王者荣耀司马懿官方形象切图": "Official Honor of Kings 司马懿 artwork cutout",
   "王者荣耀官方银标截图位": "Official Honor of Kings silver badge slot",
@@ -1582,7 +1697,7 @@ window.addEventListener("pointermove", updatePointer);
 if (canHover) {
   gsap.utils
     .toArray(
-      ".project-card, .paper-card, .hackathon-card, .overview-card, .profile-lead, .profile-radar, .profile-signal, .milestone, .gaming-card, .rank-tile, .internship-task, .metric-card, .showcase-panel, .stack-card, .channel-card, .signal-panel, .contact-panel"
+      ".project-card, .paper-card, .hackathon-card, .overview-card, .profile-lead, .profile-radar, .profile-signal, .milestone, .moment-card, .gaming-card, .rank-tile, .internship-task, .metric-card, .showcase-panel, .stack-card, .channel-card, .signal-panel, .contact-panel"
     )
     .forEach((element) => {
     element.addEventListener("pointermove", (event) => {
