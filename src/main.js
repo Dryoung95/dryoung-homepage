@@ -867,8 +867,7 @@ document.querySelector("#app").innerHTML = `
             <h2 data-reveal>王者荣耀司马懿，市级银标战绩。</h2>
           </div>
           <p data-reveal>
-            这部分作为个人主页里的兴趣切面：保留最高排名、英雄定位和竞技记忆点，
-            司马懿形象使用官方素材切图，银标位置预留给官方截图素材。
+            黑暗无边无际，人类却妄想光明的胜利。
           </p>
         </div>
 
