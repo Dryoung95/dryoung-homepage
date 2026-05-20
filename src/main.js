@@ -25,6 +25,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const navItems = [
   ["能力 Profile", "#profile"],
+  ["竞技 Rank", "#gaming"],
   ["动效 Motion", "#geometry"],
   ["作品 Experiments", "#experiments"],
   ["实习 Internship", "#internship"],
@@ -225,7 +226,7 @@ const resumeMilestones = [
   ["书生大模型公式识别打榜赛", "基于曦云 C 系列算力，排名第 21 名", "RL / SFT"],
   ["科研与会议论文", "ICMEEA 2025 录用论文，IEEE SPL 方向研究持续推进", "Research Writing"],
   ["社团与生态实践", "智能基座社团会长，代表西南交通大学参与华为全联接大会 2024", "Community"],
-  ["语言与表达", "普通话一级甲等，CET-4/6，雅思 6.5", "Communication"]
+  ["语言与表达", "普通话二级甲等，CET-4/6，雅思 6.5", "Communication"]
 ];
 
 const internshipStats = [
@@ -467,6 +468,85 @@ document.querySelector("#app").innerHTML = `
               `
             )
             .join("")}
+        </div>
+      </section>
+
+      <section class="gaming section-band" id="gaming">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker" data-reveal>竞技信号 Rank Signal</div>
+            <h2 data-reveal>王者荣耀司马懿，市级银标战绩。</h2>
+          </div>
+          <p data-reveal>
+            这部分作为个人主页里的兴趣切面：保留最高排名、英雄定位和竞技记忆点，
+            司马懿形象使用官方素材切图，银标位置预留给官方截图素材。
+          </p>
+        </div>
+
+        <div class="gaming-card" data-reveal>
+          <div class="sima-stage" aria-label="司马懿官方形象切图动画">
+            <div class="sima-grid" aria-hidden="true"></div>
+            <div class="sima-moon" aria-hidden="true"></div>
+            <div class="sima-ring ring-a" aria-hidden="true"></div>
+            <div class="sima-ring ring-b" aria-hidden="true"></div>
+            <div class="sima-rune rune-a">CITY</div>
+            <div class="sima-rune rune-b">SILVER</div>
+            <div class="sima-rune rune-c">89</div>
+            <div class="sima-cutout" aria-hidden="true">
+              <img class="sima-official-art" src="/sima-yi-official-cutout.png" alt="王者荣耀司马懿官方形象切图" />
+              <span class="sima-shadow shadow-a"></span>
+              <span class="sima-shadow shadow-b"></span>
+              <span class="sima-robe"></span>
+              <span class="sima-shoulder shoulder-a"></span>
+              <span class="sima-shoulder shoulder-b"></span>
+              <span class="sima-head"></span>
+              <span class="sima-eye"></span>
+              <span class="sima-blade blade-a"></span>
+              <span class="sima-blade blade-b"></span>
+            </div>
+          </div>
+
+          <div class="gaming-copy">
+            <div class="silver-badge" aria-label="王者荣耀官方银标截图位">
+              <img
+                class="silver-badge-image"
+                src="/hok-silver-badge.png"
+                alt="王者荣耀官方银标截图"
+                onerror="this.hidden=true; this.closest('.silver-badge').querySelector('.badge-core').hidden=false;"
+              />
+              <span class="badge-wing wing-left"></span>
+              <span class="badge-wing wing-right"></span>
+              <span class="badge-core" hidden>
+                <small>HONOR OF KINGS</small>
+                <strong>银标</strong>
+                <em>太原市</em>
+              </span>
+            </div>
+            <span class="gaming-label">Official Rank Slot</span>
+            <h3>司马懿 / Sima Yi</h3>
+            <p>
+              王者荣耀英雄池中的法刺代表位。个人最高记录为司马懿市级银标，
+              最高排名太原市第 89 名。
+            </p>
+            <div class="rank-grid" aria-label="司马懿战绩信息">
+              <div class="rank-tile">
+                <span>Hero</span>
+                <strong>司马懿</strong>
+              </div>
+              <div class="rank-tile">
+                <span>Badge</span>
+                <strong>市级银标</strong>
+              </div>
+              <div class="rank-tile rank-highlight">
+                <span>Best Rank</span>
+                <strong>太原市第 89</strong>
+              </div>
+              <div class="rank-tile">
+                <span>Role</span>
+                <strong>法刺 / Burst</strong>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1163,7 +1243,7 @@ window.addEventListener("pointermove", updatePointer);
 if (canHover) {
   gsap.utils
     .toArray(
-      ".project-card, .paper-card, .hackathon-card, .overview-card, .profile-lead, .profile-radar, .profile-signal, .milestone, .internship-task, .metric-card, .showcase-panel, .stack-card, .channel-card, .signal-panel, .contact-panel"
+      ".project-card, .paper-card, .hackathon-card, .overview-card, .profile-lead, .profile-radar, .profile-signal, .milestone, .gaming-card, .rank-tile, .internship-task, .metric-card, .showcase-panel, .stack-card, .channel-card, .signal-panel, .contact-panel"
     )
     .forEach((element) => {
     element.addEventListener("pointermove", (event) => {
@@ -1238,6 +1318,47 @@ profileTimeline
     { y: 26, opacity: 0.58 },
     { y: 0, opacity: 1, stagger: 0.04, ease: "none" },
     0.16
+  );
+
+const gamingTimeline = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".gaming",
+    start: "top 76%",
+    end: "bottom 34%",
+    scrub: 1
+  }
+});
+
+gamingTimeline
+  .fromTo(
+    ".sima-cutout",
+    { x: -92, rotateY: -18, scale: 0.82, opacity: 0.36 },
+    { x: 0, rotateY: 0, scale: 1, opacity: 1, ease: "none" },
+    0
+  )
+  .fromTo(
+    ".sima-ring",
+    { scale: 0.72, rotate: -48, opacity: 0.28 },
+    { scale: 1.08, rotate: 64, opacity: 0.92, stagger: 0.05, ease: "none" },
+    0.04
+  )
+  .fromTo(
+    ".silver-badge",
+    { y: 42, rotate: -16, scale: 0.72, opacity: 0.42 },
+    { y: 0, rotate: 0, scale: 1, opacity: 1, ease: "none" },
+    0.08
+  )
+  .fromTo(
+    ".rank-tile",
+    { y: 34, opacity: 0.42 },
+    { y: 0, opacity: 1, stagger: 0.045, ease: "none" },
+    0.18
+  )
+  .fromTo(
+    ".sima-rune",
+    { y: 32, opacity: 0.18 },
+    { y: 0, opacity: 0.78, stagger: 0.04, ease: "none" },
+    0.12
   );
 
 const geometryTimeline = gsap.timeline({
