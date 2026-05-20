@@ -24,14 +24,14 @@ import { createIcons } from "lucide";
 gsap.registerPlugin(ScrollTrigger);
 
 const navItems = [
-  ["能力 Profile", "#profile"],
-  ["动效 Motion", "#geometry"],
-  ["作品 Experiments", "#experiments"],
-  ["实习 Internship", "#internship"],
-  ["技术 Stack", "#stack"],
-  ["竞技", "#gaming"],
-  ["频道 Channel", "#channel"],
-  ["联系 Contact", "#contact"]
+  { zh: "能力", en: "Profile", href: "#profile" },
+  { zh: "动效", en: "Motion", href: "#geometry" },
+  { zh: "作品", en: "Experiments", href: "#experiments" },
+  { zh: "实习", en: "Internship", href: "#internship" },
+  { zh: "技术", en: "Stack", href: "#stack" },
+  { zh: "竞技", en: "Rank", href: "#gaming" },
+  { zh: "频道", en: "Channel", href: "#channel" },
+  { zh: "联系", en: "Contact", href: "#contact" }
 ];
 
 const projects = [
@@ -309,11 +309,18 @@ document.querySelector("#app").innerHTML = `
         <span>Dryoung OS</span>
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
-        ${navItems.map(([label, href]) => `<a href="${href}" data-nav-target="${href}">${label}</a>`).join("")}
+        ${navItems.map(({ zh, href }) => `<a href="${href}" data-nav-target="${href}">${zh}</a>`).join("")}
       </nav>
-      <a class="header-action" href="#contact" aria-label="Contact Dryoung">
-        <i data-lucide="send"></i>
-      </a>
+      <div class="header-tools">
+        <button class="language-toggle" type="button" data-language-toggle aria-label="Switch to English">
+          <span class="lang-option lang-zh">中</span>
+          <span class="lang-divider" aria-hidden="true"></span>
+          <span class="lang-option lang-en">EN</span>
+        </button>
+        <a class="header-action" href="#contact" aria-label="Contact Dryoung">
+          <i data-lucide="send"></i>
+        </a>
+      </div>
     </header>
 
     <main>
@@ -1024,6 +1031,334 @@ createIcons({
   }
 });
 
+const textTranslations = {
+  "能力": "Profile",
+  "动效": "Motion",
+  "作品": "Experiments",
+  "实习": "Internship",
+  "技术": "Stack",
+  "竞技": "Rank",
+  "频道": "Channel",
+  "联系": "Contact",
+  "Builder Up 启发 / Vibe Coding 创作者": "Inspired by Builder Up / Vibe Coding Creator",
+  "一名 Vibe Coding 创作者与 AI Builder": "A Vibe Coding creator and AI Builder",
+  "以热情浇筑于灵感，于码间架构万象。": "Shaping inspiration with passion, and building worlds between lines of code.",
+  "当前聚焦 / Current Focus": "Current Focus",
+  "方向 Focus": "Direction",
+  "身份 Identity": "Identity",
+  "把 AI 框架、端侧系统和创意工具做成可运行作品。": "Turning AI frameworks, edge systems, and creative tools into runnable work.",
+  "已完成 MindSpore 模型迁移与 Lite 部署、OpenVINO / FastDeploy 黑客松 PR、 Atlas 200DK A2 端侧项目、公众号自动化发布和 GPT image 2.0 生图流程。 科研侧覆盖 FPGA CNN 硬件加速论文与 OAM 雷达重构。": "Completed MindSpore model migration and Lite deployment, OpenVINO / FastDeploy hackathon PRs, an Atlas 200DK A2 edge project, automated WeChat publishing, and a GPT image 2.0 image-generation workflow. Research work covers FPGA CNN hardware acceleration and OAM radar reconstruction.",
+  "创意工程": "Creative Engineering",
+  "开源协作": "Open Source Collaboration",
+  "AI 工程落地": "AI Engineering Delivery",
+  "MindSpore 迁移、Lite 部署、FastDeploy 优化与 OpenVINO demo，把模型推进到可运行链路。": "MindSpore migration, Lite deployment, FastDeploy optimization, and OpenVINO demos that move models into runnable pipelines.",
+  "端侧与硬件": "Edge and Hardware",
+  "Atlas 200DK A2、FPGA CNN 加速、RTK 轨迹和嵌入式控制，连接模型与真实设备。": "Atlas 200DK A2, FPGA CNN acceleration, RTK trajectories, and embedded control connect models to real devices.",
+  "科研与开源": "Research and Open Source",
+  "ICMEEA 2025 录用论文、OAM 雷达重构、飞桨黑客松 PR 和 MindSpore 开源实习。": "ICMEEA 2025 accepted paper, OAM radar reconstruction, PaddlePaddle hackathon PRs, and MindSpore open-source internship.",
+  "创意自动化": "Creative Automation",
+  "个人主页动效、公众号自动工作流和 GPT image 2.0 生图，沉淀可发布的数字作品。": "Personal homepage motion, automated publishing workflows, and GPT image 2.0 generation turned into publishable digital work.",
+  "能力档案 Profile": "Profile",
+  "AI 框架、模型部署、端侧智能与自动化内容工具。": "AI frameworks, model deployment, edge intelligence, and automated content tools.",
+  "目前的 focus 是把模型从论文、框架或文档推进到可运行原型： 完成迁移、推理部署、性能验证，再把结果整理成 PR、报告或可展示的交互作品。": "My current focus is turning models from papers, frameworks, or documents into runnable prototypes: migration, inference deployment, performance validation, and delivery as PRs, reports, or interactive work.",
+  "电子信息科学与技术背景，面向 AI 工程落地。": "Electronics and information science background, focused on AI engineering delivery.",
+  "从信号处理与硬件课程出发，实践延伸到 MindSpore 生态、 Ascend/Atlas 部署、模型迁移优化和开源任务交付。": "Starting from signal processing and hardware coursework, my practice extends into the MindSpore ecosystem, Ascend/Atlas deployment, model migration, optimization, and open-source delivery.",
+  "当前阶段": "Current Stage",
+  "本科大三": "Junior Undergraduate",
+  "方向": "Direction",
+  "AI 框架与模型部署": "AI Frameworks and Model Deployment",
+  "补充标签": "Additional Focus",
+  "嵌入式智能系统": "Embedded Intelligent Systems",
+  "西南交通大学": "Southwest Jiaotong University",
+  "电子信息科学与技术 · 本科大三": "Electronic Information Science and Technology · Junior undergraduate",
+  "课程基础覆盖信号处理、半导体物理、电磁场、天线、微波、数据结构与算法。": "Coursework covers signal processing, semiconductor physics, electromagnetic fields, antennas, microwave engineering, data structures, and algorithms.",
+  "能够把模型迁移、导出、转换、Ascend 推理、性能测试和文档交付串成闭环。": "Able to connect model migration, export, conversion, Ascend inference, performance testing, and documentation into a complete delivery loop.",
+  "端侧智能系统": "Edge Intelligent Systems",
+  "做过端侧识别结果与门禁硬件执行联动，对 AI 模型部署和嵌入式控制链路有实践经验。": "Built edge recognition linked to access-control hardware, with practical experience in AI deployment and embedded control pipelines.",
+  "科研与信号方向": "Research and Signal Processing",
+  "包含 ICMEEA 2025 录用论文、FPGA CNN 硬件加速器设计，以及 OAM 雷达重构研究。": "Includes an ICMEEA 2025 accepted paper, FPGA CNN hardware accelerator design, and OAM radar reconstruction research.",
+  "飞桨黑客松第十期": "PaddlePaddle Hackathon Season 10",
+  "Intel 与沐曦赛道进阶任务，进行中": "Advanced tasks in the Intel and Metax tracks, in progress.",
+  "嵌入式芯片与系统设计大赛": "Embedded Chip and System Design Competition",
+  "ST 赛道西南赛区三等奖，AMD FPGA 赛道国赛三等奖": "Third prize in the ST Southwest regional track and national third prize in the AMD FPGA track.",
+  "书生大模型公式识别打榜赛": "InternLM Formula Recognition Leaderboard",
+  "基于曦云 C 系列算力，排名第 21 名": "Ranked 21st using Xiyun C-series compute.",
+  "科研与会议论文": "Research and Conference Papers",
+  "ICMEEA 2025 录用论文，IEEE SPL 方向研究持续推进": "ICMEEA 2025 accepted paper, with IEEE SPL-oriented research ongoing.",
+  "社团与生态实践": "Community and Ecosystem Practice",
+  "智能基座社团会长，代表西南交通大学参与华为全联接大会 2024": "President of the Intelligent Base club; represented Southwest Jiaotong University at Huawei Connect 2024.",
+  "语言与表达": "Language and Communication",
+  "普通话二级甲等，CET-4/6，雅思 6.5": "Mandarin Level 2-A, CET-4/6, IELTS 6.5.",
+  "动效系统 Motion System": "Motion System",
+  "从 AI Infra 到端侧作品的构建路径。": "A build path from AI Infra to edge-side work.",
+  "这组滚动几何对应我的技术主线：以 AI Infra 组织模型部署，以 VLM 处理文档与视觉信息， 以 Edge 验证端侧和硬件场景，最终沉淀为 PR、Demo、论文或个人作品。": "This scrolling geometry maps to my technical path: AI Infra for model deployment, VLM for documents and visual information, and Edge for device and hardware validation, eventually becoming PRs, demos, papers, or personal work.",
+  "AI Infra / 推理基础设施": "AI Infra / Inference Infrastructure",
+  "OpenVINO Doc2Prototype、FastDeploy PaddleOCR-VL、MindSpore Lite ViT 部署，聚焦模型导出、运行时适配和推理性能。": "OpenVINO Doc2Prototype, FastDeploy PaddleOCR-VL, and MindSpore Lite ViT deployment, focused on model export, runtime adaptation, and inference performance.",
+  "VLM / 文档智能链路": "VLM / Document Intelligence Pipeline",
+  "围绕 OCR-VL、多模态输入、文档图像理解、结构化 JSON 输出，把模型能力转成可用工具。": "Built around OCR-VL, multimodal input, document-image understanding, and structured JSON output, turning model capability into usable tools.",
+  "Edge / 端侧与硬件验证": "Edge / Device and Hardware Validation",
+  "Atlas 200DK A2、Ascend GE、FPGA CNN 加速和嵌入式控制，把模型推进到真实设备或可交付 PR。": "Atlas 200DK A2, Ascend GE, FPGA CNN acceleration, and embedded control move models toward real devices or deliverable PRs.",
+  "作品实验 Experiments": "Experiments",
+  "项目与开源成果": "Projects and Open-source Results",
+  "精选端侧 AI、雷达重构、飞桨黑客松和 MindSpore 实习等代表经历， 保留 PR、指标和可复现链路。": "Selected work across edge AI, radar reconstruction, PaddlePaddle hackathon, and MindSpore internship, keeping PRs, metrics, and reproducible paths visible.",
+  "Atlas 200DK A2 人脸识别自动门": "Atlas 200DK A2 Face-recognition Door",
+  "端侧 AI / Embedded system": "Edge AI / Embedded System",
+  "围绕 Atlas 200DK A2 搭建人脸识别、门禁控制和语音播报流程，完成端侧 AI 到硬件执行的闭环。": "Built a face-recognition, access-control, and voice-feedback flow around Atlas 200DK A2, completing the loop from edge AI to hardware execution.",
+  "物理增强型雷达重构框架": "Physics-enhanced Radar Reconstruction Framework",
+  "面向 OAM 雷达阵列病态性提出虚拟阵列平移方案，构建端到端网络并完成 PSNR 70.00 dB 的结果验证。": "Proposed virtual array translation for ill-conditioned OAM radar arrays, built an end-to-end network, and validated a PSNR result of 70.00 dB.",
+  "参与 Intel 与沐曦赛道进阶任务，持续推进环境配置、模型/算子适配、测试验证与开源提交材料整理。": "Worked on advanced Intel and Metax track tasks, covering environment setup, model/operator adaptation, testing, validation, and open-source submission materials.",
+  "联系交流": "Contact",
+  "论文成果 Research": "Research",
+  "论文围绕卷积神经网络硬件加速器设计展开，体现 FPGA 与深度学习推理加速方向的工程实践。": "This paper focuses on CNN hardware accelerator design and reflects engineering practice in FPGA-based deep-learning inference acceleration.",
+  "一篇以学术化叙事分析研究生选拔、学历竞争和社会流动焦虑的公共研究写作，适合作为个人表达与跨学科观察的补充成果。": "A public research essay using academic-style argumentation to analyze graduate selection, credential competition, and anxiety around social mobility.",
+  "查看原文": "Read Article",
+  "飞桨黑客松 Hackathon": "PaddlePaddle Hackathon",
+  "两个进阶任务 PR：文档生成链路与视觉路径优化。": "Two advanced PRs: document-generation pipeline and vision-path optimization.",
+  "Intel 与沐曦方向的两个 PR 分别覆盖文档结构化生成和 PaddleOCR-VL 视觉路径性能优化。 内容包含流程节点、性能指标和源码入口。": "Two PRs in the Intel and Metax directions cover document-structure generation and PaddleOCR-VL vision-path performance optimization, including workflow nodes, metrics, and source entry points.",
+  "进阶 PR": "Advanced PRs",
+  "Doc2Prototype 链路": "Doc2Prototype Pipeline",
+  "并发平均收益": "Average Concurrency Gain",
+  "P95 收益": "P95 Gain",
+  "把技术文档图像接到 PaddleOCR-VL + OpenVINO，输出结构化 JSON、下游工件和单页视觉报告。": "Connected technical document images to PaddleOCR-VL + OpenVINO, producing structured JSON, downstream artifacts, and a one-page visual report.",
+  "API 文档 -> endpoint JSON + FastAPI skeleton": "API docs -> endpoint JSON + FastAPI skeleton",
+  "Flowchart -> nodes/edges JSON + Mermaid diagram": "Flowchart -> nodes/edges JSON + Mermaid diagram",
+  "参考样例 -> structured JSON + Markdown summary": "Reference sample -> structured JSON + Markdown summary",
+  "在 Metax GPU 上压缩 PaddleOCR-VL vision path 的 host/device 同步和小 tensor 开销，保持语义不变。": "Reduced host/device synchronization and small-tensor overhead in the PaddleOCR-VL vision path on Metax GPU while preserving semantics.",
+  "projector packing flow 直接返回 packed image features": "Projector packing flow directly returns packed image features.",
+  "复用 host-side grid_thw_lst 元数据，减少同步开销": "Reused host-side grid_thw_lst metadata to reduce synchronization overhead.",
+  "补 batch=1 fast path、float32 rotary embedding 和单测": "Added batch=1 fast path, float32 rotary embedding, and tests.",
+  "查看 PR": "View PR",
+  "开源实习 Internship": "Open-source Internship",
+  "从模型迁移、推理部署到验证系统优化。": "From model migration and inference deployment to verifier-system optimization.",
+  "MindSpore 开源实习覆盖 MindFlow、MindSpore Lite 和 AKG 三条技术线。 任务成果包含模型训练迁移、ViT 高性能推理部署、AKG Verifier Data Cache，并以 PR、文档、测试材料交付。": "The MindSpore open-source internship covered MindFlow, MindSpore Lite, and AKG. Deliverables included model-training migration, high-performance ViT inference deployment, AKG Verifier Data Cache, and PR/document/test materials.",
+  "积分": "Points",
+  "学校 / 专业": "School / Major",
+  "西南交通大学 · 电子信息科学与技术": "Southwest Jiaotong University · Electronic Information Science and Technology",
+  "实习 SIG": "Internship SIG",
+  "实习周期": "Internship Period",
+  "工程关键词": "Engineering Keywords",
+  "模型迁移、收敛优化、Ascend 部署、验证缓存": "Model migration, convergence optimization, Ascend deployment, verifier cache",
+  "开源实习积分": "Open-source Internship Points",
+  "代表任务": "Representative Tasks",
+  "训练迁移 / 推理部署 / 验证缓存": "Training migration / Inference deployment / Verifier cache",
+  "Transolver 训练 Loss": "Transolver Training Loss",
+  "RMSE 2.3048e-04 / 相对误差约 3.00%": "RMSE 2.3048e-04 / relative error about 3.00%",
+  "ViT 平均推理时延": "ViT Average Inference Latency",
+  "1749.28 FPS / 目标 < 410ms": "1749.28 FPS / target < 410ms",
+  "MindFlow Transolver 模型迁移补充": "MindFlow Transolver Model Migration",
+  "30 分": "30 pts",
+  "测试 RMSE 2.3048e-04": "Test RMSE 2.3048e-04",
+  "梳理论文、参考实现和 MindFlow 新架构案例结构。": "Reviewed the paper, reference implementation, and new MindFlow case structure.",
+  "重构 Structured Mesh 训练逻辑，引入 GaussianNormalizer 稳定收敛。": "Refactored Structured Mesh training logic and introduced GaussianNormalizer for stable convergence.",
+  "将部分 einsum 改写为 matmul，修复 Ascend float64 到 Tensor 兼容问题。": "Rewrote some einsum operations as matmul and fixed Ascend float64-to-Tensor compatibility issues.",
+  "MindSpore Lite ViT 高性能推理部署": "MindSpore Lite ViT High-performance Inference Deployment",
+  "完成 ViT 模型 ONNX 导出，并转换为 MindIR 部署到 MindSpore Lite。": "Exported the ViT model to ONNX and converted it to MindIR for MindSpore Lite deployment.",
+  "采用通用 MindIR + GE 在线编译方案，规避布局冲突并提升稳定性。": "Used a general MindIR + GE online compilation approach to avoid layout conflicts and improve stability.",
+  "开启 enforce_fp16 与 GE 自动格式调优，时延显著低于 410ms 目标。": "Enabled enforce_fp16 and GE automatic format tuning, with latency well below the 410ms target.",
+  "AKG Agents Verifier Data Cache 能力开发": "AKG Agents Verifier Data Cache Development",
+  "40 分": "40 pts",
+  "Reference / Baseline 双缓存": "Reference / Baseline dual cache",
+  "设计 verifier/data_cache.py，封装配置解析、cache key、元信息和并发写入锁。": "Designed verifier/data_cache.py, encapsulating config parsing, cache keys, metadata, and concurrent write locks.",
+  "缓存 reference data 与 baseline profile，命中后复用输入、输出和平均耗时。": "Cached reference data and baseline profiles, reusing inputs, outputs, and average runtime on cache hits.",
+  "适配 RemoteWorker、SOL-ExecBench，并补充 Triton Ascend 端到端示例和单测。": "Adapted RemoteWorker and SOL-ExecBench, adding Triton Ascend end-to-end examples and unit tests.",
+  "训练迁移 / Training": "Training Migration",
+  "Transolver 从论文和参考实现走向 MindFlow 新架构案例，重点解决收敛、算子兼容和 Ascend 数据类型问题。": "Transolver moved from paper and reference implementation into the new MindFlow case architecture, focusing on convergence, operator compatibility, and Ascend dtype issues.",
+  "推理部署 / Inference": "Inference Deployment",
+  "ViT-Base 在 batch size 256、224×224 输入下完成高性能部署，平均时延 146.35ms。": "ViT-Base achieved high-performance deployment with batch size 256 and 224×224 input, reaching 146.35ms average latency.",
+  "验证缓存 / Verifier": "Verifier Cache",
+  "Data Cache 复用 reference data 与 baseline profile，覆盖缓存命中、损坏重建、RemoteWorker 和 SOL baseline cache 适配。": "Data Cache reuses reference data and baseline profiles, covering cache hits, corruption rebuilds, RemoteWorker, and SOL baseline cache adaptation.",
+  "技术栈 Stack": "Stack",
+  "支撑 AI 工程与创意实现的技术栈": "The stack supporting AI engineering and creative implementation",
+  "覆盖模型迁移、端侧部署、开源协作、信号处理和创意前端等已实践方向。": "Covers model migration, edge deployment, open-source collaboration, signal processing, and creative frontend work.",
+  "AI 框架与模型": "AI Frameworks and Models",
+  "MindSpore、MindSpore Lite、PyTorch、ONNX、MindIR、ViT、Transolver": "MindSpore, MindSpore Lite, PyTorch, ONNX, MindIR, ViT, Transolver",
+  "硬件与平台": "Hardware and Platforms",
+  "Ascend/GE 后端、Atlas 200DK A2、FPGA/AMD 赛道实践、RTK 卫星循迹": "Ascend/GE backend, Atlas 200DK A2, FPGA/AMD track practice, RTK satellite tracking",
+  "工程协作": "Engineering Collaboration",
+  "Git/PR 协作、README、测试报告、训练日志、性能数据整理和开源社区沟通": "Git/PR collaboration, README, test reports, training logs, performance data organization, and open-source community communication",
+  "算法与信号": "Algorithms and Signals",
+  "数据结构与算法、数字信号处理、雷达成像重构、物理建模与端到端训练": "Data structures and algorithms, digital signal processing, radar imaging reconstruction, physics modeling, and end-to-end training",
+  "竞技信号": "Rank Signal",
+  "王者荣耀司马懿，市级银标战绩。": "Honor of Kings 司马懿, municipal silver badge record.",
+  "黑暗无边无际，人类却妄想光明的胜利。": "Darkness is boundless, yet humanity still dreams of victory in the light.",
+  "太原市": "Taiyuan",
+  "银标": "Silver Badge",
+  "官方银标素材位": "Official Silver Badge Asset Slot",
+  "王者荣耀英雄池中的法刺代表位。个人最高记录为司马懿市级银标， 最高排名太原市第 89 名。": "A representative mage-assassin pick in Honor of Kings. My personal best record is a municipal silver badge for 司马懿, ranking No. 89 in Taiyuan.",
+  "英雄": "Hero",
+  "标识": "Badge",
+  "市级银标": "Municipal Silver Badge",
+  "最高排名": "Best Rank",
+  "太原市第 89": "Taiyuan No. 89",
+  "定位": "Role",
+  "法刺": "Mage Assassin",
+  "内容频道 Channel": "Channel",
+  "岩烧鸡腿堡：每日 AI 新闻自动化发布。": "岩烧鸡腿堡: automated daily AI news publishing.",
+  "已实现公众号内容自动工作流，接入 GPT image 2.0 自动生成封面与配图， 支撑每日 AI 新闻更新。": "Implemented an automated WeChat official-account workflow with GPT image 2.0 for covers and supporting visuals, enabling daily AI news updates.",
+  "已实现自动工作流": "Automated workflow implemented",
+  "从新闻整理到内容输出形成稳定链路。": "A stable pipeline from news collection to content output.",
+  "GPT image 2.0 自动生图": "GPT image 2.0 automated image generation",
+  "为每日 AI 新闻生成封面与配图素材。": "Generates cover and supporting visuals for daily AI news.",
+  "微信内搜索": "Search in WeChat",
+  "公众号名：岩烧鸡腿堡": "Official account: 岩烧鸡腿堡",
+  "联系 Contact": "Contact",
+  "一起构建下一个原型。": "Build the next prototype together.",
+  "欢迎交流创意前端、AI 辅助开发、Vibe Coding 工作流和 builder 方向的项目。 可通过邮箱、GitHub 或 AtomGit 联系。": "Open to conversations around creative frontend, AI-assisted development, Vibe Coding workflows, and builder-oriented projects. Reach me by email, GitHub, or AtomGit.",
+  "公众号": "WeChat"
+};
+
+const attributeTranslations = {
+  "Primary navigation": "Primary navigation",
+  "Contact Dryoung": "Contact Dryoung",
+  "主页内容总览": "Homepage content overview",
+  "能力分布": "Skill distribution",
+  "滚动驱动的几何变化": "Scroll-driven geometric motion",
+  "Doc2Prototype workflow": "Doc2Prototype workflow",
+  "FastDeploy performance profile": "FastDeploy performance profile",
+  "MindSpore 开源实习任务可视化": "MindSpore open-source internship visualization",
+  "开源实习成果可视化快照": "Open-source internship result snapshots",
+  "司马懿官方形象切图动画": "Official 司马懿 artwork cutout animation",
+  "王者荣耀司马懿官方形象切图": "Official Honor of Kings 司马懿 artwork cutout",
+  "王者荣耀官方银标截图位": "Official Honor of Kings silver badge slot",
+  "王者荣耀官方银标截图": "Official Honor of Kings silver badge screenshot",
+  "司马懿战绩信息": "司马懿 rank information",
+  "岩烧鸡腿堡公众号头像": "岩烧鸡腿堡 account avatar",
+  "公众号自动化发布流程": "Official account automation workflow",
+  "微信公众号入口说明": "WeChat official account entry instructions"
+};
+
+const originalTextNodes = new WeakMap();
+const originalAttributes = new WeakMap();
+let currentLanguage = getStoredLanguage();
+let currentSectionId = "#home";
+
+function normalizeCopy(value) {
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function preserveWhitespace(original, replacement) {
+  const leading = original.match(/^\s*/)?.[0] || "";
+  const trailing = original.match(/\s*$/)?.[0] || "";
+  return `${leading}${replacement}${trailing}`;
+}
+
+function getStoredLanguage() {
+  try {
+    return window.localStorage.getItem("dryoung-language") === "en" ? "en" : "zh";
+  } catch {
+    return "zh";
+  }
+}
+
+function saveLanguage(language) {
+  try {
+    window.localStorage.setItem("dryoung-language", language);
+  } catch {
+    // Storage may be unavailable in strict privacy modes.
+  }
+}
+
+function translateTextNodes(language) {
+  const root = document.querySelector("#app");
+
+  if (!root) {
+    return;
+  }
+
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      if (!node.nodeValue.trim()) {
+        return NodeFilter.FILTER_REJECT;
+      }
+
+      const parent = node.parentElement;
+
+      if (parent?.closest(".signature-mark, .language-toggle")) {
+        return NodeFilter.FILTER_REJECT;
+      }
+
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+
+  const nodes = [];
+  let node = walker.nextNode();
+
+  while (node) {
+    nodes.push(node);
+    node = walker.nextNode();
+  }
+
+  nodes.forEach((textNode) => {
+    if (!originalTextNodes.has(textNode)) {
+      originalTextNodes.set(textNode, textNode.nodeValue);
+    }
+
+    const original = originalTextNodes.get(textNode);
+    const replacement = textTranslations[normalizeCopy(original)];
+
+    textNode.nodeValue = language === "en" && replacement ? preserveWhitespace(original, replacement) : original;
+  });
+}
+
+function translateAttributes(language) {
+  document.querySelectorAll("[aria-label], [alt], [title]").forEach((element) => {
+    if (element.closest(".language-toggle")) {
+      return;
+    }
+
+    ["aria-label", "alt", "title"].forEach((attribute) => {
+      if (!element.hasAttribute(attribute)) {
+        return;
+      }
+
+      let attributes = originalAttributes.get(element);
+
+      if (!attributes) {
+        attributes = {};
+        originalAttributes.set(element, attributes);
+      }
+
+      if (!attributes[attribute]) {
+        attributes[attribute] = element.getAttribute(attribute);
+      }
+
+      const original = attributes[attribute];
+      const replacement = attributeTranslations[normalizeCopy(original)];
+      element.setAttribute(attribute, language === "en" && replacement ? replacement : original);
+    });
+  });
+}
+
+function updateLanguageToggle(language) {
+  const toggle = document.querySelector("[data-language-toggle]");
+
+  if (!toggle) {
+    return;
+  }
+
+  toggle.setAttribute("aria-pressed", String(language === "en"));
+  toggle.setAttribute("aria-label", language === "en" ? "切换到中文" : "Switch to English");
+}
+
+function applyLanguage(language) {
+  currentLanguage = language === "en" ? "en" : "zh";
+  document.documentElement.lang = currentLanguage === "en" ? "en" : "zh-CN";
+  document.body.classList.toggle("lang-en", currentLanguage === "en");
+  translateTextNodes(currentLanguage);
+  translateAttributes(currentLanguage);
+  updateLanguageToggle(currentLanguage);
+  saveLanguage(currentLanguage);
+  setActiveSection(currentSectionId);
+  ScrollTrigger.refresh();
+}
+
+function bindLanguageToggle() {
+  document.querySelector("[data-language-toggle]")?.addEventListener("click", () => {
+    applyLanguage(currentLanguage === "en" ? "zh" : "en");
+  });
+}
+
 const signatureImages = [
   [".signature-cn-image", "has-signature-cn"],
   [".signature-en-image", "has-signature-en"]
@@ -1060,17 +1395,20 @@ gsap.ticker.lagSmoothing(0);
 const progressLabel = document.querySelector(".motion-progress-label");
 const navLinks = gsap.utils.toArray(".nav-links a");
 const sectionLabels = new Map([
-  ["#home", "Home"],
-  ...navItems.map(([label, href]) => [href, label])
+  ["#home", { zh: "首页", en: "Home" }],
+  ...navItems.map(({ zh, en, href }) => [href, { zh, en }])
 ]);
 
 function setActiveSection(sectionId) {
+  currentSectionId = sectionId;
+
   navLinks.forEach((link) => {
     link.classList.toggle("is-active", link.getAttribute("href") === sectionId);
   });
 
   if (progressLabel) {
-    progressLabel.textContent = sectionLabels.get(sectionId) || "Home";
+    const label = sectionLabels.get(sectionId);
+    progressLabel.textContent = label?.[currentLanguage] || "Home";
   }
 }
 
@@ -1083,7 +1421,7 @@ ScrollTrigger.create({
   }
 });
 
-[["#home", "Home"], ...navItems.map(([label, href]) => [href, label])].forEach(([href]) => {
+["#home", ...navItems.map(({ href }) => href)].forEach((href) => {
   const section = document.querySelector(href);
 
   if (!section) {
@@ -1100,6 +1438,8 @@ ScrollTrigger.create({
 });
 
 setActiveSection("#home");
+bindLanguageToggle();
+applyLanguage(currentLanguage);
 
 gsap.utils.toArray("[data-reveal]").forEach((element) => {
   gsap.fromTo(
