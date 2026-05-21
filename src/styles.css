@@ -523,6 +523,11 @@ p {
   display: none;
 }
 
+.signature-loading .wordmark-cn,
+.signature-loading .wordmark-en {
+  visibility: hidden;
+}
+
 .signature-frame,
 .signature-frame::before,
 .signature-frame::after,

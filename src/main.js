@@ -23,6 +23,8 @@ import { createIcons } from "lucide";
 
 gsap.registerPlugin(ScrollTrigger);
 
+document.body.classList.add("signature-loading");
+
 const navItems = [
   { zh: "能力", en: "Profile", href: "#profile" },
   { zh: "动效", en: "Motion", href: "#geometry" },
@@ -371,8 +373,8 @@ document.querySelector("#app").innerHTML = `
           </p>
           <h1 class="wordmark signature-mark" data-reveal aria-label="Chen Jiayan Dryoung Chan">
             <span class="signature-frame" aria-hidden="true"></span>
-            <img class="signature-asset signature-cn-image" src="/signature-jiayan.png" alt="&#38472;&#22025;&#34893; signature" />
-            <img class="signature-asset signature-en-image" src="/signature-dryoung.png" alt="Dryoung signature" />
+            <img class="signature-asset signature-cn-image" src="/signature-jiayan.png" alt="&#38472;&#22025;&#34893; signature" width="1540" height="534" loading="eager" decoding="async" fetchpriority="high" />
+            <img class="signature-asset signature-en-image" src="/signature-dryoung.png" alt="Dryoung signature" width="1614" height="728" loading="eager" decoding="async" fetchpriority="high" />
             <span class="wordmark-cn signature-cn" data-text="&#38472;&#22025;&#34893;">&#38472;&#22025;&#34893;</span>
             <span class="wordmark-en" data-text="Dryoung Chan">Dryoung Chan</span>
           </h1>
@@ -1522,6 +1524,15 @@ const signatureImages = [
   [".signature-en-image", "has-signature-en"]
 ];
 
+let pendingSignatureImages = 0;
+let settledSignatureImages = 0;
+const finishSignatureImage = () => {
+  settledSignatureImages += 1;
+  if (settledSignatureImages >= pendingSignatureImages) {
+    document.body.classList.remove("signature-loading");
+  }
+};
+
 signatureImages.forEach(([selector, className]) => {
   const image = document.querySelector(selector);
 
@@ -1529,16 +1540,29 @@ signatureImages.forEach(([selector, className]) => {
     return;
   }
 
-  const markLoaded = () => document.body.classList.add(className);
-  const markMissing = () => document.body.classList.remove(className);
+  pendingSignatureImages += 1;
+  let settled = false;
+  const settle = (loaded) => {
+    if (settled) {
+      return;
+    }
 
-  image.addEventListener("load", markLoaded);
-  image.addEventListener("error", markMissing);
+    settled = true;
+    document.body.classList.toggle(className, loaded);
+    finishSignatureImage();
+  };
 
-  if (image.complete && image.naturalWidth > 0) {
-    markLoaded();
+  image.addEventListener("load", () => settle(true), { once: true });
+  image.addEventListener("error", () => settle(false), { once: true });
+
+  if (image.complete) {
+    settle(image.naturalWidth > 0);
   }
 });
+
+if (pendingSignatureImages === 0) {
+  document.body.classList.remove("signature-loading");
+}
 
 const lenis = new Lenis({
   duration: 1.1,
