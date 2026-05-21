@@ -1006,6 +1006,13 @@ document.querySelector("#app").innerHTML = `
             <div class="sima-rune rune-a">太原市</div>
             <div class="sima-rune rune-b">银标</div>
             <div class="sima-rune rune-c">89</div>
+            <div class="sima-mobile-rank" aria-hidden="true">
+              <span class="mobile-rank-medal">银标</span>
+              <span class="mobile-rank-copy">
+                <em>最高排名</em>
+                <strong>太原市第 89</strong>
+              </span>
+            </div>
             <div class="sima-cutout" aria-hidden="true">
               <img class="sima-official-art" src="/sima-yi-official-cutout.png" alt="王者荣耀司马懿官方形象切图" />
               <span class="sima-shadow shadow-a"></span>
