@@ -628,23 +628,24 @@ document.querySelector("#app").innerHTML = `
             <div class="micius-wordmark" aria-hidden="true">MICIUS-AGENT</div>
             <div class="micius-panel">
               <div class="micius-slime" aria-hidden="true">
-                <span></span>
+                <img src="/micius-slime.svg" alt="" />
               </div>
               <div class="micius-runtime">
                 <h4>Runtime</h4>
-                <p><span>model:</span> gpt-5.5</p>
-                <p><span>endpoint:</span> api.asxs.top/v1</p>
-                <p><span>node:</span> 192.168.137.100:8765</p>
-                <p><span>state:</span> local mode</p>
+                <p><span>model:</span> your-model-name</p>
+                <p><span>endpoint:</span> api.example.com/v1</p>
+                <p><span>node:</span> 127.0.0.1:8765</p>
+                <p><span>state:</span> local self-management</p>
 
                 <h4>Available Tools</h4>
-                <p><span>connection:</span> /connect status, /doctor api, /status</p>
-                <p><span>perception:</span> /camera describe</p>
+                <p><span>connection:</span> /connect status, /doctor, /model</p>
+                <p><span>device:</span> none connected</p>
+                <p><span>perception:</span> device node required</p>
                 <p><span>self:</span> micius_connection_check, micius_usb_scan, micius_serial_monitor...</p>
 
                 <h4>Available Skills</h4>
-                <p><span>boards:</span> atlas_200i_dk_a2</p>
-                <p><span>workflow:</span> atlas_camera_check</p>
+                <p><span>boards:</span> no active board</p>
+                <p><span>workflow:</span> DeviceResearch ready</p>
                 <p><span>memory:</span> facts, sessions, reflections, curator</p>
               </div>
             </div>
@@ -652,8 +653,11 @@ document.querySelector("#app").innerHTML = `
               <span>self <em>ok</em></span>
               <span>resources <strong>missing</strong></span>
               <span>manifest <strong>missing</strong></span>
+              <span>scripts <strong>missing</strong></span>
               <span>camera <strong>missing</strong></span>
+              <span>peripherals <strong>missing</strong></span>
               <span>memory <em>ok</em></span>
+              <span>18 tools | /help for commands</span>
             </div>
             <div class="micius-prompt"><span>&gt;</span></div>
           </div>
