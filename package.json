@@ -2,6 +2,13 @@
   "name": "dryoung-homepage",
   "version": "0.1.0",
   "private": true,
+  "description": "Personal homepage for Chen Jiayan / Dryoung Chan.",
+  "homepage": "https://dryoung.top/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dryoung95/dryoung-homepage.git"
+  },
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
