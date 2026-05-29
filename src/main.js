@@ -600,6 +600,65 @@ document.querySelector("#app").innerHTML = `
             .join("")}
         </div>
 
+        <article class="micius-showcase" data-reveal aria-label="Micius-Agent 项目展示">
+          <div class="micius-copy">
+            <div class="project-index">04 / OPEN SOURCE</div>
+            <p>Embedded Agent / Device Tooling</p>
+            <h3>Micius-Agent：面向真实硬件的终端 Agent 工作台</h3>
+            <span>
+              一个把大模型、USB/串口、PlatformIO、Linux 设备节点、板卡知识库和 DeviceResearch
+              轨迹组织到一起的嵌入式 Agent 原型。重点不是让模型停留在聊天里，而是让它通过受控工具理解硬件状态、
+              编译上传固件、读取串口证据，并把可复用流程沉淀成长期记忆。
+            </span>
+            <div class="micius-tags" aria-label="Micius-Agent 关键能力">
+              <small>LLM Tool Loop</small>
+              <small>Device Node</small>
+              <small>USB / Serial</small>
+              <small>PlatformIO</small>
+              <small>DeviceResearch</small>
+              <small>Board Memory</small>
+            </div>
+            <a class="micius-link" href="https://github.com/Dryoung95/micius" target="_blank" rel="noreferrer">
+              查看 GitHub
+              <i data-lucide="arrow-up-right"></i>
+            </a>
+          </div>
+
+          <div class="micius-terminal" aria-label="Micius-Agent 终端启动界面">
+            <div class="micius-wordmark" aria-hidden="true">MICIUS-AGENT</div>
+            <div class="micius-panel">
+              <div class="micius-slime" aria-hidden="true">
+                <span></span>
+              </div>
+              <div class="micius-runtime">
+                <h4>Runtime</h4>
+                <p><span>model:</span> gpt-5.5</p>
+                <p><span>endpoint:</span> api.asxs.top/v1</p>
+                <p><span>node:</span> 192.168.137.100:8765</p>
+                <p><span>state:</span> local mode</p>
+
+                <h4>Available Tools</h4>
+                <p><span>connection:</span> /connect status, /doctor api, /status</p>
+                <p><span>perception:</span> /camera describe</p>
+                <p><span>self:</span> micius_connection_check, micius_usb_scan, micius_serial_monitor...</p>
+
+                <h4>Available Skills</h4>
+                <p><span>boards:</span> atlas_200i_dk_a2</p>
+                <p><span>workflow:</span> atlas_camera_check</p>
+                <p><span>memory:</span> facts, sessions, reflections, curator</p>
+              </div>
+            </div>
+            <div class="micius-statusline">
+              <span>self <em>ok</em></span>
+              <span>resources <strong>missing</strong></span>
+              <span>manifest <strong>missing</strong></span>
+              <span>camera <strong>missing</strong></span>
+              <span>memory <em>ok</em></span>
+            </div>
+            <div class="micius-prompt"><span>&gt;</span></div>
+          </div>
+        </article>
+
         <div class="paper-block" data-reveal>
           <div class="section-kicker">论文成果 Research</div>
           ${paperItems
@@ -1237,6 +1296,9 @@ const textTranslations = {
   "面向 OAM 雷达阵列病态性提出虚拟阵列平移方案，构建端到端网络并完成 PSNR 70.00 dB 的结果验证。": "Proposed virtual array translation for ill-conditioned OAM radar arrays, built an end-to-end network, and validated a PSNR result of 70.00 dB.",
   "参与 Intel 与沐曦赛道进阶任务，持续推进环境配置、模型/算子适配、测试验证与开源提交材料整理。": "Worked on advanced Intel and Metax track tasks, covering environment setup, model/operator adaptation, testing, validation, and open-source submission materials.",
   "联系交流": "Contact",
+  "Micius-Agent：面向真实硬件的终端 Agent 工作台": "Micius-Agent: a terminal workbench for real hardware",
+  "一个把大模型、USB/串口、PlatformIO、Linux 设备节点、板卡知识库和 DeviceResearch 轨迹组织到一起的嵌入式 Agent 原型。重点不是让模型停留在聊天里，而是让它通过受控工具理解硬件状态、 编译上传固件、读取串口证据，并把可复用流程沉淀成长期记忆。": "An embedded-agent prototype that organizes LLMs, USB/serial, PlatformIO, Linux device nodes, board knowledge, and DeviceResearch traces into one workflow. The goal is not to leave the model in chat, but to let it understand hardware state through controlled tools, build and upload firmware, read serial evidence, and distill reusable workflows into long-term memory.",
+  "查看 GitHub": "View GitHub",
   "论文成果 Research": "Research",
   "论文围绕卷积神经网络硬件加速器设计展开，体现 FPGA 与深度学习推理加速方向的工程实践。": "This paper focuses on CNN hardware accelerator design and reflects engineering practice in FPGA-based deep-learning inference acceleration.",
   "一篇以学术化叙事分析研究生选拔、学历竞争和社会流动焦虑的公共研究写作，适合作为个人表达与跨学科观察的补充成果。": "A public research essay using academic-style argumentation to analyze graduate selection, credential competition, and anxiety around social mobility.",
@@ -1364,6 +1426,9 @@ const attributeTranslations = {
   "主页内容总览": "Homepage content overview",
   "能力分布": "Skill distribution",
   "滚动驱动的几何变化": "Scroll-driven geometric motion",
+  "Micius-Agent 项目展示": "Micius-Agent project showcase",
+  "Micius-Agent 关键能力": "Micius-Agent key capabilities",
+  "Micius-Agent 终端启动界面": "Micius-Agent terminal startup interface",
   "Doc2Prototype workflow": "Doc2Prototype workflow",
   "FastDeploy performance profile": "FastDeploy performance profile",
   "MindSpore 开源实习任务可视化": "MindSpore open-source internship visualization",
@@ -1765,6 +1830,7 @@ if (canHover) {
   gsap.utils
     .toArray(
       ".project-card, .paper-card, .hackathon-card, .overview-card, .profile-lead, .profile-radar, .profile-signal, .milestone, .moment-card, .gaming-card, .rank-tile, .ongoing-card, .ongoing-intro, .internship-task, .metric-card, .showcase-panel, .stack-card, .channel-card, .signal-panel, .contact-panel"
+      + ", .micius-showcase"
     )
     .forEach((element) => {
     element.addEventListener("pointermove", (event) => {
